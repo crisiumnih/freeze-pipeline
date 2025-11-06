@@ -158,3 +158,90 @@ cd ../..
 python download_data.py
 python demo.py
 ```
+
+# Notes on GeDi
+
+## GeDi Descriptor Experiments (LMO Dataset)
+
+This section documents the **`gedi_experiments_lmo.py`** script suite.  
+These experiments benchmark and visualize the **GeDi geometric descriptor** performance under different point cloud resolutions using the **LineMOD (LMO)** 20 Objects dataset.
+
+---
+
+### File: `GeDi/gedi_experiments_lmo.py`
+
+**Purpose:**  
+Run controlled experiments on a single 3D object from the dataset (e.g., `Kinfu_Audiobox1_light/object.xyz`)  
+to measure how **GeDi inference time**, **feature density**, and **visual descriptor structure** vary with downsampling.
+
+---
+
+### Configuration Summary
+
+| Variable | Description |
+|-----------|--------------|
+| `MODE` | `"single"` → visualize one level interactively<br>`"all"` → generate PNGs for all levels headlessly |
+| `SINGLE_LEVEL` | Select which level to visualize when in `"single"` mode |
+| `path` | Input 3D model path (e.g., `data/20objects/data/Kinfu_Audiobox1_light/object.xyz`) |
+| `output_dir` | Folder where results will be saved (default: `outputs/gedi_experiments/`) |
+| `sampling_levels` | Defines voxel downsample sizes for five resolutions:<br>**high_50k** (full), **medium_25k**, **low_12k**, **lower_6k**, **tiny_3k** |
+| `fchkpt_gedi_net` | Path to pretrained checkpoint (e.g., `data/chkpts/3dmatch/chkpt.tar`) |
+
+---
+
+### What It Does
+
+Depending on the mode:
+
+#### 1. `MODE = "single"`
+- Loads one resolution level (e.g., `"medium_25k"`)
+- Runs GeDi on GPU
+- Projects 32D descriptors → RGB via PCA
+- Opens an **interactive Open3D viewer**
+
+#### 2. `MODE = "all"`
+- Loops through all five sampling levels
+- Runs GeDi for each
+- Renders and **saves PNG snapshots** (`.png`) of colored descriptors
+- Logs metadata (point count, timing, file paths) in a CSV
+
+---
+
+### CSV Log Example
+
+| Level | Points | Time (ms) | PNG File |
+|--------|---------|------------|-----------|
+| high_50k | 50407 | 35167.8 | `outputs/gedi_experiments/high_50k.png` |
+| medium_25k | 7179 | 1647.3 | `outputs/gedi_experiments/medium_25k.png` |
+| low_12k | 6263 | 1414.6 | `outputs/gedi_experiments/low_12k.png` |
+| lower_6k | 3068 | 587.4 | `outputs/gedi_experiments/lower_6k.png` |
+| tiny_3k | 1466 | 247.7 | `outputs/gedi_experiments/tiny_3k.png` |
+
+---
+
+### Example Visual Results
+
+| Density Level | Visualization |
+|----------------|----------------|
+| **High (50k)** | ![High 50k](GeDi/outputs/gedi_experiments/high_50k.png) |
+| **Medium (25k)** | ![Medium 25k](GeDi/outputs/gedi_experiments/medium_25k.png) |
+| **Low (12k)** | ![Low 12k](GeDi/outputs/gedi_experiments/low_12k.png) |
+| **Lower (6k)** | ![Lower 6k](GeDi/outputs/gedi_experiments/lower_6k.png) |
+| **Tiny (3k)** | ![Tiny 3k](GeDi/outputs/gedi_experiments/tiny_3k.png) |
+
+> Each image shows how descriptor distinctiveness changes with geometric resolution.
+
+---
+
+### Usage Examples
+
+#### **To visualize one configuration interactively:**
+```bash
+# Edit script
+MODE = "single"
+SINGLE_LEVEL = "medium_25k"
+```
+# Run
+```
+python gedi_experiments_lmo.py
+```

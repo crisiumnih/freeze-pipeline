@@ -1,0 +1,6 @@
+Level,Points,Time_ms,PNG_File
+high_50k,50407,—,outputs/gedi_experiments/high_50k.png
+medium_25k,7179,—,outputs/gedi_experiments/medium_25k.png
+low_12k,6263,—,outputs/gedi_experiments/low_12k.png
+lower_6k,3068,—,outputs/gedi_experiments/lower_6k.png
+tiny_3k,1466,—,outputs/gedi_experiments/tiny_3k.png
