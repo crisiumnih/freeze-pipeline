@@ -33,15 +33,55 @@ FreeZe estimates the 6D pose of a known 3D object in a scene **without training*
 | Stage | Description | Status |
 |--------|--------------|--------|
 | **GeDi Integration** | Build, test, and benchmark GeDi on RTX 4090 | ✅ Done |
-| **Real-time Profiling** | Measure inference latency per object | ✅ In progress |
-| **Dataset Setup** | Integrate LM-O / YCB-V for controlled tests | 🟡 Next |
-| **DINOv2 Extraction** | Implement visual descriptor projection to 3D | ⬜ Pending |
-| **Feature Fusion & RANSAC** | Build fusion + 3D registration module | ⬜ Pending |
-| **ICP + SAR** | Add refinement stage | ⬜ Pending |
-| **Full FreeZe Reproduction** | Run and evaluate on benchmark datasets | ⬜ Pending |
-| **Optimization (dGeDi)** | Explore GeDi distillation and speedups | ⬜ Planned |
+| **Real-time Profiling** | Measure inference latency per object | ✅ Done |
+| **Dataset Setup** | Integrate LM-O / YCB-V for controlled tests | ✅ Done |
+| **Query Object Extraction** | extraxting deatures | ⬜ Pending |
 
 ---
+
+## Structure
+
+It uses three fully isolated environments:
+
+`master_env` – runs the controller pipeline
+
+`gedi_env` – GeDi inference
+
+`dino_env` – DINOv2 inference
+
+Each model is executed inside its own environment to avoid dependency conflicts.
+
+```
+freeze-pipeline/
+│
+├── integration/
+│   └── run_pipeline.py         # main controller (calls both models)
+│
+├── gedi/
+│   ├── .venv/              # GeDi environment
+│   ├── gedi_process_object.py
+│   └── run_gedi_inference.py
+│
+├── dino/
+│   ├── .venv/              # DINO environment
+│   └── demo_infer.py
+│
+├── data/
+│   └── 20objects/
+│       └── data/
+│           └── Kinfu_*/        # object folders
+│               ├── object.xyz
+│               ├── rgb_noseg/
+│               ├── depth_noseg/
+│               ├── mask/
+│               └── info/
+│
+└── processed/                  # all output is saved here
+    ├── <object>_pc.ply
+    ├── <object>_gedi.npy
+    └── <object>_dino.npy
+
+```
 
 ## References
 
