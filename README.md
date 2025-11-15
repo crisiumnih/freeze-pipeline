@@ -35,7 +35,15 @@ FreeZe estimates the 6D pose of a known 3D object in a scene **without training*
 | **GeDi Integration** | Build, test, and benchmark GeDi on RTX 4090 | ✅ Done |
 | **Real-time Profiling** | Measure inference latency per object | ✅ Done |
 | **Dataset Setup** | Integrate LM-O / YCB-V for controlled tests | ✅ Done |
-| **Query Object Extraction** | extraxting deatures | ⬜ Pending |
+| **Query Object Extraction** | extraxting deatures | ✅ Done |
+
+
+Completed in QOP
+# 1. GeDi processing (geometric features)
+# 2. Multi-view rendering with masks
+# 3. DINOv2 feature extraction (6 views)
+# 4. Feature back-projection
+# 5. Multi-view aggregation
 
 ---
 
