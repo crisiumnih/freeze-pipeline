@@ -39,11 +39,11 @@ FreeZe estimates the 6D pose of a known 3D object in a scene **without training*
 
 
 Completed in QOP
-# 1. GeDi processing (geometric features)
-# 2. Multi-view rendering with masks
-# 3. DINOv2 feature extraction (6 views)
-# 4. Feature back-projection
-# 5. Multi-view aggregation
+ 1. GeDi processing (geometric features)
+ 2. Multi-view rendering with masks
+ 3. DINOv2 feature extraction (6 views)
+ 4. Feature back-projection
+ 5. Multi-view aggregation
 
 ---
 
