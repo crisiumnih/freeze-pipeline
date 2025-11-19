@@ -4,6 +4,7 @@ from torchvision import transforms
 import numpy as np
 import sys
 import torch.nn.functional as F
+import math
 
 # Args
 img_path = sys.argv[1]
@@ -81,7 +82,7 @@ with torch.no_grad():
         
         # Try to find factors of num_patches that are close to square
         # Common cases: 36×38=1368, 37×37=1369
-        import math
+        
         best_h, best_w = None, None
         min_diff = float('inf')
         
