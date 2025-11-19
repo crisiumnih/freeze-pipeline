@@ -235,16 +235,29 @@ if __name__ == "__main__":
     print(f"Point cloud center: {pcd_center}")
     
     # Load camera parameters
-    cam_params = np.load(os.path.join(processed_folder, f"{object_name}_camera_params.npy"), 
+    cam_params = np.load(os.path.join(processed_folder, f"{object_name}_camera_params.npy"),
                         allow_pickle=True).item()
     width = cam_params['width']
     height = cam_params['height']
     view_rotations = cam_params['view_rotations']
-    
+
     print(f"Image dimensions: {width}x{height}")
     print(f"Number of views: {len(view_rotations)}")
-    
-    intrinsic = create_camera_intrinsic(width, height, fov=60)
+
+    # Use saved intrinsics if available, otherwise compute from FOV
+    if 'fx' in cam_params and 'fy' in cam_params:
+        fx = cam_params['fx']
+        fy = cam_params['fy']
+        cx = cam_params['cx']
+        cy = cam_params['cy']
+        intrinsic = o3d.camera.PinholeCameraIntrinsic()
+        intrinsic.set_intrinsics(width, height, fx, fy, cx, cy)
+        print(f"Using saved camera intrinsics: fx={fx}, fy={fy}, cx={cx}, cy={cy}")
+        if 'camera_model' in cam_params:
+            print(f"Camera model: {cam_params['camera_model']}")
+    else:
+        intrinsic = create_camera_intrinsic(width, height, fov=60)
+        print(f"Using computed intrinsics with FOV=60")
     
     # Process each view
     view_names = list(view_rotations.keys())
