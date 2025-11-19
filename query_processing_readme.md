@@ -351,6 +351,3 @@ python visualize_matching.py processed/ Kinfu_Samurai1_light
 2. Point cloud colored by view coverage
 3. PCA visualization of visual features
 4. Coverage statistics and histograms
-
-
-See `SCENE_PROCESSING.md` for the next phase.
