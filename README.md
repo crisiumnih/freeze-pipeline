@@ -20,6 +20,16 @@ FreeZe estimates the 6D pose of a known 3D object in a scene **without training*
     This stage runs once per object to generate a detailed feature representation.
     -   **Geometric Features:** The object's 3D point cloud is processed by **GeDi** to produce shape-aware descriptors for each point.
     -   **Visual Features:** The object's 3D model is rendered from multiple viewpoints. **DINOv2** extracts dense visual features from each view, which are then back-projected and aggregated onto the 3D point cloud.
+  
+
+| Front View | Right View |
+| :---: | :---: |
+| **RGB Render** | **RGB Render** |
+| <img src="processed/hope/view_00_front.png" width="300"> | <img src="processed/hope/view_01_right.png" width="300"> |
+| **Segmentation Mask** | **Segmentation Mask** |
+| <img src="processed/hope/mask_00_front.png" width="300"> | <img src="processed/hope/mask_01_right.png" width="300"> |
+| **Depth Map** | **Depth Map** |
+| <img src="processed/hope/depth_00_front.png" width="300"> | <img src="processed/hope/depth_01_right.png" width="300"> |
 
 2.  **Target Scene Processing (Online Localization)**
     This stage runs on a new scene image to find the object of interest.
