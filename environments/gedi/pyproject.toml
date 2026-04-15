@@ -1,0 +1,13 @@
+[project]
+name = "gedi-server"
+version = "0.1.0"
+description = "GeDi geometric feature extraction server"
+requires-python = "==3.8.*"
+
+dependencies = [
+    # Will be installed via custom wheels
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

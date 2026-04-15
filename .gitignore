@@ -1,1 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data
+data/hope/
+data/results/
+*.ply
+*.obj
+*.png
+*.jpg
 *.npy
+
+# Model checkpoints
+environments/gedi/checkpoints/
+environments/gedi/*.whl
+environments/gedi/*.whl.*
+environments/dinov2/checkpoints/
+environments/sam2/checkpoints/
+
+# Internal docs (local only, for preprint)
+ABLATIONS.md
+ARCHITECTURE.md
+INSTALLATION_COMPLETE.md
+INSTALLATION_STATUS.md
+PROJECT_STATUS.md
+QUERY_PIPELINE_PLAN.md
+
+# Dev/internal scripts (local only)
+scripts/test_backproject.py
+scripts/test_fusion.py
+scripts/test_geometric.py
+scripts/test_icp.py
+scripts/test_pose.py
+scripts/test_pose_fused.py
+scripts/test_pose_normalized.py
+scripts/test_renderer.py
+scripts/test_target.py
+scripts/test_target_visual.py
+scripts/test_visual.py
+scripts/visualize_problem.py
+scripts/visualize_simple.py
+
+# Generated outputs
+output/
+debug_output/
+
+# GeDi source (cloned separately)
+/GeDi/
+
+# Temporary files
+*.log
+.DS_Store
+tmp/
+temp/

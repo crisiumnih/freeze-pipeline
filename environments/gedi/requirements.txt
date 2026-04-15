@@ -1,0 +1,11 @@
+# GeDi Environment - Python 3.8 + PyTorch 1.8.1
+# Install custom wheels first, then these packages
+
+# Core dependencies (install AFTER PyTorch and Open3D wheels)
+torchgeometry==0.1.2
+gdown
+tensorboard
+protobuf==3.20
+
+# Additional utilities
+numpy<1.24  # Compatible with Python 3.8
